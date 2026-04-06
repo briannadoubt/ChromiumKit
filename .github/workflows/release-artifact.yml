@@ -12,7 +12,10 @@ jobs:
 
     steps:
       - name: Check out sources
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+
+      - name: Install CI dependencies
+        run: ./scripts/install_ci_dependencies.sh
 
       - name: Show toolchain
         run: |
@@ -30,7 +33,7 @@ jobs:
           echo "tag=cef-${VERSION}" >> "$GITHUB_OUTPUT"
 
       - name: Upload release artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ChromiumEmbeddedFramework-xcframework
           path: |

@@ -19,7 +19,10 @@ jobs:
 
     steps:
       - name: Check out sources
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+
+      - name: Install CI dependencies
+        run: ./scripts/install_ci_dependencies.sh
 
       - name: Show toolchain
         run: |
@@ -83,7 +86,7 @@ jobs:
 
       - name: Create update pull request
         if: steps.versions.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "Update CEF to ${{ steps.versions.outputs.latest }}"
           branch: "codex/cef-${{ steps.versions.outputs.latest }}"

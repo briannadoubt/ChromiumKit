@@ -7,13 +7,24 @@ on:
       - "codex/**"
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   build-and-test:
     runs-on: macos-26
 
     steps:
       - name: Check out sources
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+
+      - name: Install CI dependencies
+        run: ./scripts/install_ci_dependencies.sh
+
+      - name: Prepare local CEF artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: ./scripts/prepare_local_cef_artifact.sh
 
       - name: Show toolchain
         run: |
