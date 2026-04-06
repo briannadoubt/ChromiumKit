@@ -1,0 +1,358 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1C735389D7F928B5CCE19896 /* ChromiumKit in Frameworks */ = {isa = PBXBuildFile; productRef = 82495C1A73E2B4DEC7117264 /* ChromiumKit */; };
+		4F4482FDE6613A467829946B /* BrowserPlayground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB4F67910EE70EC3250B53C /* BrowserPlayground.swift */; };
+		5DB24165347D0541C39B6523 /* AppSchemeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CD310657AD0AB4D3123D47 /* AppSchemeHandler.swift */; };
+		720C896DE9F041B0B440871A /* ChromiumKitDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05046B91CD54265E4636B5C /* ChromiumKitDemoApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		842BB2AAEB24EDC1F21BC526 /* ChromiumKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ChromiumKit; path = ../..; sourceTree = SOURCE_ROOT; };
+		A3CD310657AD0AB4D3123D47 /* AppSchemeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSchemeHandler.swift; sourceTree = "<group>"; };
+		CFB4F67910EE70EC3250B53C /* BrowserPlayground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserPlayground.swift; sourceTree = "<group>"; };
+		D05046B91CD54265E4636B5C /* ChromiumKitDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChromiumKitDemoApp.swift; sourceTree = "<group>"; };
+		D2989D6E124C7A99D83D8481 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D2FFFCF9269E3976F4927F9E /* ChromiumKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChromiumKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		145C7015CE19A55DF64089DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C735389D7F928B5CCE19896 /* ChromiumKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2D319D2EBF685D0416065783 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2FFFCF9269E3976F4927F9E /* ChromiumKitDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4D09223B77F67262DFBC2D49 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A3CD310657AD0AB4D3123D47 /* AppSchemeHandler.swift */,
+				CFB4F67910EE70EC3250B53C /* BrowserPlayground.swift */,
+				D05046B91CD54265E4636B5C /* ChromiumKitDemoApp.swift */,
+				D2989D6E124C7A99D83D8481 /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B1CC7E46D18A1BFC219BC39D = {
+			isa = PBXGroup;
+			children = (
+				4D09223B77F67262DFBC2D49 /* App */,
+				CBDEF288862FCE9A018F93C2 /* Packages */,
+				2D319D2EBF685D0416065783 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CBDEF288862FCE9A018F93C2 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				842BB2AAEB24EDC1F21BC526 /* ChromiumKit */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		384443443736414230303532 /* ChromiumKit Managed Runtime */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(PROJECT_DIR)/ChromiumKitHostSupport/embed_cef.sh",
+				"$(PROJECT_DIR)/ChromiumKitHostSupport/ChromiumKitHelper.app",
+			);
+			name = "ChromiumKit Managed Runtime";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(FULL_PRODUCT_NAME)/Contents/Frameworks/ChromiumKitHelper.app",
+			);			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PROJECT_DIR/ChromiumKitHostSupport/embed_cef.sh\"\n";
+			showEnvVarsInLog = 0;
+		};/* End PBXShellScriptBuildPhase section */
+/* Begin PBXNativeTarget section */
+		8DCD76AB00523067D4287369 /* ChromiumKitDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5BD18BA8E2B93F895DF7D0D4 /* Build configuration list for PBXNativeTarget "ChromiumKitDemo" */;
+			buildPhases = (
+				B4C1D765FEEAF6E06DB8C05B /* Sources */,
+				145C7015CE19A55DF64089DE /* Frameworks */,
+				384443443736414230303532 /* ChromiumKit Managed Runtime */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ChromiumKitDemo;
+			packageProductDependencies = (
+				82495C1A73E2B4DEC7117264 /* ChromiumKit */,
+			);
+			productName = ChromiumKitDemo;
+			productReference = D2FFFCF9269E3976F4927F9E /* ChromiumKitDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4ED43084D84A389C86E51E6F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = 2BFB6A69AC71BFE4C23ECD97 /* Build configuration list for PBXProject "ChromiumKitDemo" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = B1CC7E46D18A1BFC219BC39D;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B1BAB0F1757123EE851D9FB3 /* XCLocalSwiftPackageReference "../.." */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 2D319D2EBF685D0416065783 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DCD76AB00523067D4287369 /* ChromiumKitDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B4C1D765FEEAF6E06DB8C05B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DB24165347D0541C39B6523 /* AppSchemeHandler.swift in Sources */,
+				4F4482FDE6613A467829946B /* BrowserPlayground.swift in Sources */,
+				720C896DE9F041B0B440871A /* ChromiumKitDemoApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		17058030274A8BDB432B72A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		51E2BB9727D31D8091D5DC0D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		C80D2C6714AFF36BA8F24A39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.chromiumkit.demo;
+				PRODUCT_NAME = ChromiumKitDemo;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		EA3559613B2279FFBC02CB63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.chromiumkit.demo;
+				PRODUCT_NAME = ChromiumKitDemo;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2BFB6A69AC71BFE4C23ECD97 /* Build configuration list for PBXProject "ChromiumKitDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17058030274A8BDB432B72A3 /* Debug */,
+				51E2BB9727D31D8091D5DC0D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5BD18BA8E2B93F895DF7D0D4 /* Build configuration list for PBXNativeTarget "ChromiumKitDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA3559613B2279FFBC02CB63 /* Debug */,
+				C80D2C6714AFF36BA8F24A39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		B1BAB0F1757123EE851D9FB3 /* XCLocalSwiftPackageReference "../.." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../..;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		82495C1A73E2B4DEC7117264 /* ChromiumKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ChromiumKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 4ED43084D84A389C86E51E6F /* Project object */;
+}

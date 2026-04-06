@@ -1,0 +1,15 @@
+.DS_Store
+/.build
+/.cache
+/downloads
+/Artifacts
+/Dist
+/Packages
+/Demo/ChromiumKitDemo/build
+/main.d
+/main.dia
+xcuserdata/
+DerivedData/
+.swiftpm/configuration/registries.json
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+.netrc

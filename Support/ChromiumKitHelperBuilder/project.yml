@@ -1,0 +1,65 @@
+name: ChromiumKitHelperBuilder
+options:
+  deploymentTarget:
+    macOS: "26.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: 6.0
+    MACOSX_DEPLOYMENT_TARGET: 26.0
+
+targets:
+  ChromiumKitHelper:
+    type: application
+    platform: macOS
+    sources:
+      - path: ../../Sources/ChromiumKitTooling/Resources/ChromiumKitHostSupportTemplate
+        includes:
+          - ChromiumKitHelper.mm
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.chromiumkit.helper
+        PRODUCT_NAME: ChromiumKitHelper
+        INFOPLIST_FILE: ../../Sources/ChromiumKitTooling/Resources/ChromiumKitHostSupportTemplate/ChromiumKitHelper-Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        CODE_SIGNING_ALLOWED: NO
+        CLANG_CXX_LANGUAGE_STANDARD: gnu++20
+        HEADER_SEARCH_PATHS:
+          - $(SRCROOT)/../../Vendor/CEF
+          - $(SRCROOT)/../../Vendor/CEF/include
+        OTHER_LDFLAGS:
+          - -lc++
+    dependencies:
+      - target: CEFHelperSupport
+      - sdk: AppKit.framework
+      - sdk: Foundation.framework
+
+  CEFHelperSupport:
+    type: library.static
+    platform: macOS
+    sources:
+      - path: ../../Vendor/CEF/libcef_dll
+        excludes:
+          - CMakeLists.txt
+          - cpptoc/test
+          - ctocpp/test
+          - wrapper/cef_scoped_sandbox_context_mac.mm
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.chromiumkit.helper.cefhelpersupport
+        PRODUCT_NAME: CEFHelperSupport
+        CLANG_CXX_LANGUAGE_STANDARD: gnu++20
+        HEADER_SEARCH_PATHS:
+          - $(SRCROOT)/../../Vendor/CEF
+          - $(SRCROOT)/../../Vendor/CEF/include
+          - $(SRCROOT)/../../Vendor/CEF/libcef_dll
+        OTHER_CPLUSPLUSFLAGS:
+          - -DWRAPPING_CEF_SHARED
+        OTHER_LDFLAGS:
+          - -lc++
+    dependencies:
+      - sdk: AppKit.framework
+      - sdk: ApplicationServices.framework
+      - sdk: Foundation.framework
+      - sdk: Security.framework

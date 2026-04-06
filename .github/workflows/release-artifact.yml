@@ -1,0 +1,49 @@
+name: Release Artifact
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-cef-artifact:
+    runs-on: macos-26
+
+    steps:
+      - name: Check out sources
+        uses: actions/checkout@v4
+
+      - name: Show toolchain
+        run: |
+          xcodebuild -version
+          swift --version
+
+      - name: Build CEF artifact and refresh metadata
+        run: ./scripts/build_cef_artifact.sh
+
+      - name: Read release metadata
+        id: metadata
+        run: |
+          VERSION="$(/usr/bin/jq -r '.version' Config/cef-artifact-release.json)"
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "tag=cef-${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Upload release artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ChromiumEmbeddedFramework-xcframework
+          path: |
+            Dist/ChromiumEmbeddedFramework.xcframework.zip
+            Config/cef-artifact-release.json
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.metadata.outputs.tag }}
+          name: CEF ${{ steps.metadata.outputs.version }}
+          draft: false
+          prerelease: false
+          files: |
+            Dist/ChromiumEmbeddedFramework.xcframework.zip
+            Config/cef-artifact-release.json
