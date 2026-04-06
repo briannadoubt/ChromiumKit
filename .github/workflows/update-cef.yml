@@ -3,7 +3,7 @@ name: Update CEF
 on:
   workflow_dispatch:
   schedule:
-    - cron: "23 * * * *"
+    - cron: "23 16 * * *"
 
 permissions:
   contents: write
@@ -36,10 +36,10 @@ jobs:
           echo "latest=${LATEST_VERSION}" >> "$GITHUB_OUTPUT"
           if [[ "${CURRENT_VERSION}" == "${LATEST_VERSION}" ]]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "CEF is already up to date at ${CURRENT_VERSION}"
+            echo "Stable CEF is already up to date at ${CURRENT_VERSION}"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
-            echo "New CEF version available: ${CURRENT_VERSION} -> ${LATEST_VERSION}"
+            echo "New stable CEF version available: ${CURRENT_VERSION} -> ${LATEST_VERSION}"
           fi
 
       - name: Update tracked CEF version

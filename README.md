@@ -176,7 +176,7 @@ CI configuration lives at [ci.yml](/Users/bri/dev/ChromiumKit/.github/workflows/
 ChromiumKit now uses two automation paths:
 
 - [dependabot.yml](/Users/bri/dev/ChromiumKit/.github/dependabot.yml) keeps GitHub Actions dependencies current.
-- [update-cef.yml](/Users/bri/dev/ChromiumKit/.github/workflows/update-cef.yml) polls the official CEF builds index hourly, detects a new stable macOS minimal build, rebuilds the vendored artifact, refreshes the helper template and release metadata, publishes the new binary release asset, and opens a PR against `main`.
+- [update-cef.yml](/Users/bri/dev/ChromiumKit/.github/workflows/update-cef.yml) polls the official CEF builds index once per day, tracks the latest stable macOS minimal build only, rebuilds the vendored artifact, refreshes the helper template and release metadata, publishes the new binary release asset, and opens a PR against `main`.
 
 This split exists because Dependabot does not natively understand Chromium/CEF release feeds or our custom `cef_version.sh` plus binary-release workflow.
 
