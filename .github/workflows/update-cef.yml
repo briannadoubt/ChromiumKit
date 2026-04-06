@@ -1,0 +1,106 @@
+name: Update CEF
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 * * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: cef-release-monitor
+  cancel-in-progress: false
+
+jobs:
+  update-cef:
+    runs-on: macos-26
+
+    steps:
+      - name: Check out sources
+        uses: actions/checkout@v4
+
+      - name: Show toolchain
+        run: |
+          xcodebuild -version
+          swift --version
+          python3 --version
+
+      - name: Resolve current and latest CEF versions
+        id: versions
+        run: |
+          CURRENT_VERSION="$(python3 scripts/resolve_latest_cef.py --current-file scripts/cef_version.sh --print-current)"
+          LATEST_VERSION="$(python3 scripts/resolve_latest_cef.py)"
+          echo "current=${CURRENT_VERSION}" >> "$GITHUB_OUTPUT"
+          echo "latest=${LATEST_VERSION}" >> "$GITHUB_OUTPUT"
+          if [[ "${CURRENT_VERSION}" == "${LATEST_VERSION}" ]]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "CEF is already up to date at ${CURRENT_VERSION}"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "New CEF version available: ${CURRENT_VERSION} -> ${LATEST_VERSION}"
+          fi
+
+      - name: Update tracked CEF version
+        if: steps.versions.outputs.changed == 'true'
+        run: python3 scripts/update_cef_version.py --file scripts/cef_version.sh --version "${{ steps.versions.outputs.latest }}"
+
+      - name: Build CEF artifact and refresh release metadata
+        if: steps.versions.outputs.changed == 'true'
+        run: ./scripts/build_cef_artifact.sh
+
+      - name: Run validation suite
+        if: steps.versions.outputs.changed == 'true'
+        run: |
+          ./scripts/test-with-cef.sh
+          ./scripts/validate-project-integration.sh
+          ./scripts/validate-bundle-layout.sh
+
+      - name: Publish or refresh CEF release asset
+        if: steps.versions.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="cef-${{ steps.versions.outputs.latest }}"
+          TITLE="CEF ${{ steps.versions.outputs.latest }}"
+          NOTES="Pinned Chromium Embedded Framework binary artifact for ChromiumKit."
+          if gh release view "$TAG" --repo "${GITHUB_REPOSITORY}" >/dev/null 2>&1; then
+            gh release upload "$TAG" \
+              Dist/ChromiumEmbeddedFramework.xcframework.zip \
+              Config/cef-artifact-release.json \
+              --repo "${GITHUB_REPOSITORY}" \
+              --clobber
+          else
+            gh release create "$TAG" \
+              Dist/ChromiumEmbeddedFramework.xcframework.zip \
+              Config/cef-artifact-release.json \
+              --repo "${GITHUB_REPOSITORY}" \
+              --target "${GITHUB_SHA}" \
+              --title "$TITLE" \
+              --notes "$NOTES"
+          fi
+
+      - name: Create update pull request
+        if: steps.versions.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "Update CEF to ${{ steps.versions.outputs.latest }}"
+          branch: "codex/cef-${{ steps.versions.outputs.latest }}"
+          delete-branch: true
+          title: "[codex] Update CEF to ${{ steps.versions.outputs.latest }}"
+          body: |
+            This automated PR updates ChromiumKit's pinned CEF version.
+
+            Updated:
+            - `scripts/cef_version.sh`
+            - vendored CEF headers and `libcef_dll` sources
+            - packaged helper template and release metadata
+
+            Validation:
+            - `./scripts/test-with-cef.sh`
+            - `./scripts/validate-project-integration.sh`
+            - `./scripts/validate-bundle-layout.sh`
+
+            Release asset:
+            - `cef-${{ steps.versions.outputs.latest }}`

@@ -171,6 +171,15 @@ Because CEF's framework install name expects an app-style bundle layout, the sup
 
 CI configuration lives at [ci.yml](/Users/bri/dev/ChromiumKit/.github/workflows/ci.yml).
 
+## Dependency Automation
+
+ChromiumKit now uses two automation paths:
+
+- [dependabot.yml](/Users/bri/dev/ChromiumKit/.github/dependabot.yml) keeps GitHub Actions dependencies current.
+- [update-cef.yml](/Users/bri/dev/ChromiumKit/.github/workflows/update-cef.yml) polls the official CEF builds index hourly, detects a new stable macOS minimal build, rebuilds the vendored artifact, refreshes the helper template and release metadata, publishes the new binary release asset, and opens a PR against `main`.
+
+This split exists because Dependabot does not natively understand Chromium/CEF release feeds or our custom `cef_version.sh` plus binary-release workflow.
+
 ## CEF Artifact Workflow
 
 Pinned CEF version metadata lives in [cef_version.sh](/Users/bri/dev/ChromiumKit/scripts/cef_version.sh).
