@@ -33,7 +33,7 @@
 // by hand. See the translator.README.txt file in the tools directory for
 // more information.
 //
-// $hash=d5f069734df3cf653a83ba2e6ffb6e6c838c876e$
+// $hash=df3fd61eba6b943d05c19efe2fa91c0fcf3ecd8c$
 //
 
 #ifndef CEF_INCLUDE_CAPI_CEF_BROWSER_CAPI_H_
@@ -686,8 +686,7 @@ typedef struct _cef_browser_host_t {
   /// information will be sent to the renderer process to configure screen size
   /// and position values used by CSS and JavaScript (window.deviceScaleFactor,
   /// window.screenX/Y, window.outerWidth/Height, etc.). For background see
-  /// https://bitbucket.org/chromiumembedded/cef/wiki/GeneralUsage.md#markdown-
-  /// header-coordinate-systems
+  /// https://chromiumembedded.github.io/cef/general_usage#coordinate-systems
   ///
   /// This function is used with (a) windowless rendering and (b) windowed
   /// rendering with external (client-provided) root window.
@@ -1050,6 +1049,23 @@ typedef struct _cef_browser_host_t {
   ///
   cef_runtime_style_t(CEF_CALLBACK* get_runtime_style)(
       struct _cef_browser_host_t* self);
+
+#if CEF_API_ADDED(CEF_EXPERIMENTAL)
+  ///
+  /// Enable or disable CDP accessibility tree viewport collapse for this
+  /// browser. When enabled, off-screen landmarks and headings are serialized as
+  /// summaries and other off-screen nodes are pruned. Overrides the
+  /// cef_browser_tSettings.ax_viewport_collapse value. If called on the UI
+  /// thread the change will be applied immediately. Otherwise, the change will
+  /// be applied asynchronously on the UI thread. WARNING: This collapses the
+  /// CDP accessibility tree and disables CDP dynamic tree updates (nodesUpdated
+  /// events). The DevTools Accessibility panel will show an incomplete tree.
+  /// Platform screen readers (NVDA, JAWS, VoiceOver) are unaffected — they use
+  /// a separate code path.
+  ///
+  void(CEF_CALLBACK* set_ax_viewport_collapse)(struct _cef_browser_host_t* self,
+                                               int enabled);
+#endif
 } cef_browser_host_t;
 
 ///

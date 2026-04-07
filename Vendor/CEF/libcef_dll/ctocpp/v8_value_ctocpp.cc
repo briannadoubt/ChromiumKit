@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=2735cdbaa3b365bcdc9a1e487b0c781efeae0933$
+// $hash=48ede158ffe7f76d497a41de2516858358cd6bb9$
 //
 
 #include "libcef_dll/ctocpp/v8_value_ctocpp.h"
@@ -19,6 +19,7 @@
 #include "libcef_dll/cpptoc/v8_array_buffer_release_callback_cpptoc.h"
 #include "libcef_dll/cpptoc/v8_handler_cpptoc.h"
 #include "libcef_dll/cpptoc/v8_interceptor_cpptoc.h"
+#include "libcef_dll/ctocpp/v8_backing_store_ctocpp.h"
 #include "libcef_dll/ctocpp/v8_context_ctocpp.h"
 #include "libcef_dll/ctocpp/v8_exception_ctocpp.h"
 #include "libcef_dll/transfer_util.h"
@@ -177,6 +178,27 @@ CefRefPtr<CefV8Value> CefV8Value::CreateArrayBufferWithCopy(void* buffer,
   // Return type: refptr_same
   return CefV8ValueCToCpp_Wrap(_retval);
 }
+
+#if CEF_API_ADDED(14600)
+NO_SANITIZE("cfi-icall")
+CefRefPtr<CefV8Value> CefV8Value::CreateArrayBufferFromBackingStore(
+    CefRefPtr<CefV8BackingStore> backing_store) {
+  // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
+
+  // Verify param: backing_store; type: refptr_same
+  DCHECK(backing_store.get());
+  if (!backing_store.get()) {
+    return nullptr;
+  }
+
+  // Execute
+  auto* _retval = cef_v8_value_create_array_buffer_from_backing_store(
+      CefV8BackingStoreCToCpp_Unwrap(backing_store));
+
+  // Return type: refptr_same
+  return CefV8ValueCToCpp_Wrap(_retval);
+}
+#endif  // CEF_API_ADDED(14600)
 
 NO_SANITIZE("cfi-icall")
 CefRefPtr<CefV8Value> CefV8Value::CreateFunction(

@@ -71,13 +71,21 @@ jobs:
           if gh release view "$TAG" --repo "${GITHUB_REPOSITORY}" >/dev/null 2>&1; then
             gh release upload "$TAG" \
               Dist/ChromiumEmbeddedFramework.xcframework.zip \
+              Dist/Chromium-CREDITS.html \
               Config/cef-artifact-release.json \
+              THIRD_PARTY_NOTICES.md \
+              Licenses/CEF-LICENSE.txt \
+              Licenses/CEF-README.txt \
               --repo "${GITHUB_REPOSITORY}" \
               --clobber
           else
             gh release create "$TAG" \
               Dist/ChromiumEmbeddedFramework.xcframework.zip \
+              Dist/Chromium-CREDITS.html \
               Config/cef-artifact-release.json \
+              THIRD_PARTY_NOTICES.md \
+              Licenses/CEF-LICENSE.txt \
+              Licenses/CEF-README.txt \
               --repo "${GITHUB_REPOSITORY}" \
               --target "${GITHUB_SHA}" \
               --title "$TITLE" \

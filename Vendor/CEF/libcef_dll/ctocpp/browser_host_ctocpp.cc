@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=5938d3dcf2d7a356815eb28082cbb8847209a4e2$
+// $hash=f26dfc049cd214fba69e2c675e26fa24ca0ffda2$
 //
 
 #include "libcef_dll/ctocpp/browser_host_ctocpp.h"
@@ -1342,6 +1342,23 @@ cef_runtime_style_t CefBrowserHostCToCpp::GetRuntimeStyle() {
   // Return type: simple
   return _retval;
 }
+
+#if CEF_API_ADDED(CEF_EXPERIMENTAL)
+NO_SANITIZE("cfi-icall")
+void CefBrowserHostCToCpp::SetAxViewportCollapse(bool enabled) {
+  shutdown_checker::AssertNotShutdown();
+
+  auto* _struct = GetStruct();
+  if (!_struct->set_ax_viewport_collapse) {
+    return;
+  }
+
+  // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
+
+  // Execute
+  _struct->set_ax_viewport_collapse(_struct, enabled);
+}
+#endif  // CEF_API_ADDED(CEF_EXPERIMENTAL)
 
 // CONSTRUCTOR - Do not edit by hand.
 

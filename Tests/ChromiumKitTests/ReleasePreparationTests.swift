@@ -3,7 +3,7 @@ import XCTest
 @testable import ChromiumKitTooling
 
 final class ReleasePreparationTests: XCTestCase {
-    func testPrepareReleaseRefreshesChecksumAndReleaseURL() throws {
+    func testPrepareReleaseRefreshesChecksumReleaseURLAndVersion() throws {
         let rootURL = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
             .appendingPathComponent(UUID().uuidString, isDirectory: true)
         let artifactsURL = rootURL.appendingPathComponent("Artifacts", isDirectory: true)
@@ -30,6 +30,7 @@ final class ReleasePreparationTests: XCTestCase {
 
         let result = try ReleasePreparation.prepareRelease(
             packageRootURL: rootURL,
+            version: "9.9.9",
             releaseURL: "https://github.com/example/repo/releases/download/cef-1.2.3/ChromiumEmbeddedFramework.xcframework.zip"
         )
 
@@ -42,6 +43,42 @@ final class ReleasePreparationTests: XCTestCase {
             metadata?["url"],
             "https://github.com/example/repo/releases/download/cef-1.2.3/ChromiumEmbeddedFramework.xcframework.zip"
         )
+        XCTAssertEqual(metadata?["version"], "9.9.9")
         XCTAssertEqual(metadata?["checksum"], result.checksum)
+    }
+
+    func testPrepareReleaseDerivesVersionFromReleaseURLWhenNotProvided() throws {
+        let rootURL = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
+            .appendingPathComponent(UUID().uuidString, isDirectory: true)
+        let artifactsURL = rootURL.appendingPathComponent("Artifacts", isDirectory: true)
+        let xcframeworkURL = artifactsURL.appendingPathComponent("ChromiumEmbeddedFramework.xcframework", isDirectory: true)
+        let libraryURL = xcframeworkURL
+            .appendingPathComponent("macos-arm64_x86_64", isDirectory: true)
+            .appendingPathComponent("Chromium Embedded Framework.framework", isDirectory: true)
+        let metadataURL = rootURL
+            .appendingPathComponent("Config", isDirectory: true)
+            .appendingPathComponent("cef-artifact-release.json", isDirectory: false)
+
+        try FileManager.default.createDirectory(at: libraryURL, withIntermediateDirectories: true)
+        try FileManager.default.createDirectory(at: metadataURL.deletingLastPathComponent(), withIntermediateDirectories: true)
+        try Data("stub".utf8).write(to: libraryURL.appendingPathComponent("Chromium Embedded Framework", isDirectory: false))
+        try Data(
+            """
+            {
+              "version": "1.2.3",
+              "url": "https://example.invalid/old.zip",
+              "checksum": "0000000000000000000000000000000000000000000000000000000000000000"
+            }
+            """.utf8
+        ).write(to: metadataURL)
+
+        _ = try ReleasePreparation.prepareRelease(
+            packageRootURL: rootURL,
+            releaseURL: "https://github.com/example/repo/releases/download/cef-146.0.10%2Bg8219561%2Bchromium-146.0.7680.179/ChromiumEmbeddedFramework.xcframework.zip"
+        )
+
+        let metadataData = try Data(contentsOf: metadataURL)
+        let metadata = try JSONSerialization.jsonObject(with: metadataData) as? [String: String]
+        XCTAssertEqual(metadata?["version"], "146.0.10+g8219561+chromium-146.0.7680.179")
     }
 }

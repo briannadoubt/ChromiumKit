@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=55b0f955e4e85a5baeff8bae44559c0136e12af4$
+// $hash=66f12071a9d5ee28ca8de68cf3e13b26ce94c95d$
 //
 
 
@@ -21,6 +21,7 @@
 #include "include/capi/cef_app_capi.h"
 #include "include/capi/cef_browser_capi.h"
 #include "include/capi/cef_command_line_capi.h"
+#include "include/capi/cef_component_updater_capi.h"
 #include "include/capi/cef_cookie_capi.h"
 #include "include/capi/cef_crash_util_capi.h"
 #include "include/capi/cef_drag_data_capi.h"
@@ -154,6 +155,9 @@ decltype(&cef_browser_host_create_browser_sync) cef_browser_host_create_browser_
 decltype(&cef_browser_host_get_browser_by_identifier) cef_browser_host_get_browser_by_identifier;
 decltype(&cef_command_line_create) cef_command_line_create;
 decltype(&cef_command_line_get_global) cef_command_line_get_global;
+#if CEF_API_ADDED(14600)
+decltype(&cef_component_updater_get) cef_component_updater_get;
+#endif
 decltype(&cef_cookie_manager_get_global_manager) cef_cookie_manager_get_global_manager;
 decltype(&cef_drag_data_create) cef_drag_data_create;
 decltype(&cef_image_create) cef_image_create;
@@ -191,6 +195,9 @@ decltype(&cef_urlrequest_create) cef_urlrequest_create;
 decltype(&cef_v8_context_get_current_context) cef_v8_context_get_current_context;
 decltype(&cef_v8_context_get_entered_context) cef_v8_context_get_entered_context;
 decltype(&cef_v8_context_in_context) cef_v8_context_in_context;
+#if CEF_API_ADDED(14600)
+decltype(&cef_v8_backing_store_create) cef_v8_backing_store_create;
+#endif
 decltype(&cef_v8_value_create_undefined) cef_v8_value_create_undefined;
 decltype(&cef_v8_value_create_null) cef_v8_value_create_null;
 decltype(&cef_v8_value_create_bool) cef_v8_value_create_bool;
@@ -203,6 +210,9 @@ decltype(&cef_v8_value_create_object) cef_v8_value_create_object;
 decltype(&cef_v8_value_create_array) cef_v8_value_create_array;
 decltype(&cef_v8_value_create_array_buffer) cef_v8_value_create_array_buffer;
 decltype(&cef_v8_value_create_array_buffer_with_copy) cef_v8_value_create_array_buffer_with_copy;
+#if CEF_API_ADDED(14600)
+decltype(&cef_v8_value_create_array_buffer_from_backing_store) cef_v8_value_create_array_buffer_from_backing_store;
+#endif
 decltype(&cef_v8_value_create_function) cef_v8_value_create_function;
 decltype(&cef_v8_value_create_promise) cef_v8_value_create_promise;
 decltype(&cef_v8_stack_trace_get_current) cef_v8_stack_trace_get_current;
@@ -430,6 +440,9 @@ INIT_ENTRY(cef_browser_host_create_browser_sync);
 INIT_ENTRY(cef_browser_host_get_browser_by_identifier);
 INIT_ENTRY(cef_command_line_create);
 INIT_ENTRY(cef_command_line_get_global);
+#if CEF_API_ADDED(14600)
+INIT_ENTRY(cef_component_updater_get);
+#endif
 INIT_ENTRY(cef_cookie_manager_get_global_manager);
 INIT_ENTRY(cef_drag_data_create);
 INIT_ENTRY(cef_image_create);
@@ -467,6 +480,9 @@ INIT_ENTRY(cef_urlrequest_create);
 INIT_ENTRY(cef_v8_context_get_current_context);
 INIT_ENTRY(cef_v8_context_get_entered_context);
 INIT_ENTRY(cef_v8_context_in_context);
+#if CEF_API_ADDED(14600)
+INIT_ENTRY(cef_v8_backing_store_create);
+#endif
 INIT_ENTRY(cef_v8_value_create_undefined);
 INIT_ENTRY(cef_v8_value_create_null);
 INIT_ENTRY(cef_v8_value_create_bool);
@@ -479,6 +495,9 @@ INIT_ENTRY(cef_v8_value_create_object);
 INIT_ENTRY(cef_v8_value_create_array);
 INIT_ENTRY(cef_v8_value_create_array_buffer);
 INIT_ENTRY(cef_v8_value_create_array_buffer_with_copy);
+#if CEF_API_ADDED(14600)
+INIT_ENTRY(cef_v8_value_create_array_buffer_from_backing_store);
+#endif
 INIT_ENTRY(cef_v8_value_create_function);
 INIT_ENTRY(cef_v8_value_create_promise);
 INIT_ENTRY(cef_v8_stack_trace_get_current);
@@ -909,6 +928,12 @@ NO_SANITIZE("cfi-icall") struct _cef_command_line_t* cef_command_line_get_global
   return g_libcef_pointers.cef_command_line_get_global();
 }
 
+#if CEF_API_ADDED(14600)
+NO_SANITIZE("cfi-icall") struct _cef_component_updater_t* cef_component_updater_get() {
+  return g_libcef_pointers.cef_component_updater_get();
+}
+#endif
+
 NO_SANITIZE("cfi-icall") struct _cef_cookie_manager_t* cef_cookie_manager_get_global_manager(struct _cef_completion_callback_t* callback) {
   return g_libcef_pointers.cef_cookie_manager_get_global_manager(callback);
 }
@@ -1045,6 +1070,12 @@ NO_SANITIZE("cfi-icall") int cef_v8_context_in_context() {
   return g_libcef_pointers.cef_v8_context_in_context();
 }
 
+#if CEF_API_ADDED(14600)
+NO_SANITIZE("cfi-icall") struct _cef_v8_backing_store_t* cef_v8_backing_store_create(size_t byte_length) {
+  return g_libcef_pointers.cef_v8_backing_store_create(byte_length);
+}
+#endif
+
 NO_SANITIZE("cfi-icall") struct _cef_v8_value_t* cef_v8_value_create_undefined() {
   return g_libcef_pointers.cef_v8_value_create_undefined();
 }
@@ -1092,6 +1123,12 @@ NO_SANITIZE("cfi-icall") struct _cef_v8_value_t* cef_v8_value_create_array_buffe
 NO_SANITIZE("cfi-icall") struct _cef_v8_value_t* cef_v8_value_create_array_buffer_with_copy(void* buffer, size_t length) {
   return g_libcef_pointers.cef_v8_value_create_array_buffer_with_copy(buffer, length);
 }
+
+#if CEF_API_ADDED(14600)
+NO_SANITIZE("cfi-icall") struct _cef_v8_value_t* cef_v8_value_create_array_buffer_from_backing_store(struct _cef_v8_backing_store_t* backing_store) {
+  return g_libcef_pointers.cef_v8_value_create_array_buffer_from_backing_store(backing_store);
+}
+#endif
 
 NO_SANITIZE("cfi-icall") struct _cef_v8_value_t* cef_v8_value_create_function(const cef_string_t* name, struct _cef_v8_handler_t* handler) {
   return g_libcef_pointers.cef_v8_value_create_function(name, handler);

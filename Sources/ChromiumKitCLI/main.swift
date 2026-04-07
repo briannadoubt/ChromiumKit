@@ -115,6 +115,7 @@ struct ChromiumKitCLI {
         let packageRoot = try parseFlag("--package-root", from: arguments) ?? FileManager.default.currentDirectoryPath
         let result = try ReleasePreparation.prepareRelease(
             packageRootURL: URL(fileURLWithPath: packageRoot),
+            version: try parseFlag("--version", from: arguments),
             releaseURL: try parseFlag("--release-url", from: arguments)
         )
         print("Prepared ChromiumKit release artifact")
@@ -164,7 +165,7 @@ struct ChromiumKitCLI {
               chromiumkit integrate --project /path/to/MyApp.xcodeproj [--target MyApp]
               chromiumkit repair --project /path/to/MyApp.xcodeproj [--target MyApp]
               chromiumkit new-host --output /path/to/ChromiumKitHostSupport
-              chromiumkit prepare-release [--package-root /path/to/ChromiumKit] [--release-url https://github.com/org/repo/releases/download/tag/ChromiumEmbeddedFramework.xcframework.zip]
+              chromiumkit prepare-release [--package-root /path/to/ChromiumKit] [--version 146.0.10+g...] [--release-url https://github.com/org/repo/releases/download/tag/ChromiumEmbeddedFramework.xcframework.zip]
             """
         )
     }

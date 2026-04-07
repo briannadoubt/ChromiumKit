@@ -16,6 +16,10 @@ HELPER_TEMPLATE_DIR="${ROOT_DIR}/Sources/ChromiumKitTooling/Resources/ChromiumKi
 HELPER_TEMPLATE_APP="${HELPER_TEMPLATE_DIR}/ChromiumKitHelper.app"
 HELPER_PROJECT_DIR="${ROOT_DIR}/Support/ChromiumKitHelperBuilder"
 HELPER_PROJECT="${HELPER_PROJECT_DIR}/ChromiumKitHelperBuilder.xcodeproj"
+LICENSES_DIR="${ROOT_DIR}/Licenses"
+CEF_LICENSE_PATH="${LICENSES_DIR}/CEF-LICENSE.txt"
+CEF_README_PATH="${LICENSES_DIR}/CEF-README.txt"
+CHROMIUM_CREDITS_PATH="${ROOT_DIR}/Dist/Chromium-CREDITS.html"
 RELEASE_TAG="cef-${CEF_VERSION}"
 RELEASE_TAG_URLENCODED="${RELEASE_TAG//+/%2B}"
 
@@ -70,6 +74,11 @@ rm -rf "${ROOT_DIR}/Vendor/CEF/include" "${ROOT_DIR}/Vendor/CEF/libcef_dll"
 ditto "${ARM64_DIST}/include" "${ROOT_DIR}/Vendor/CEF/include"
 ditto "${ARM64_DIST}/libcef_dll" "${ROOT_DIR}/Vendor/CEF/libcef_dll"
 
+mkdir -p "${LICENSES_DIR}" "${ROOT_DIR}/Dist"
+cp "${ARM64_DIST}/LICENSE.txt" "${CEF_LICENSE_PATH}"
+cp "${ARM64_DIST}/README.txt" "${CEF_README_PATH}"
+cp "${ARM64_DIST}/CREDITS.html" "${CHROMIUM_CREDITS_PATH}"
+
 rm -rf "${UNIVERSAL_FRAMEWORK}"
 ditto "${ARM64_FRAMEWORK}" "${UNIVERSAL_FRAMEWORK}"
 
@@ -114,6 +123,7 @@ chmod +x "${HELPER_TEMPLATE_APP}/Contents/MacOS/ChromiumKitHelper"
 echo "Preparing release archive metadata"
 (cd "${ROOT_DIR}" && swift run chromiumkit prepare-release \
     --package-root "${ROOT_DIR}" \
+    --version "${CEF_VERSION}" \
     --release-url "${RELEASE_URL}") >/dev/null
 
 echo "Updated ${HELPER_TEMPLATE_APP}"

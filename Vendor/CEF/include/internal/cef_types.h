@@ -499,6 +499,16 @@ typedef struct _cef_settings_t {
   /// Specify whether signal handlers must be disabled on POSIX systems.
   ///
   int disable_signal_handlers;
+
+#if CEF_API_ADDED(14600)
+  ///
+  /// If true use a Views (bare-bones) window instead of a Chrome UI window when
+  /// creating default popups for Chrome style native-hosted (non-Views)
+  /// browsers. This applies when CefLifeSpanHandler::OnBeforePopup has not been
+  /// implemented to provide parent window information for the new popup.
+  ///
+  int use_views_default_popup;
+#endif
 } cef_settings_t;
 
 ///
@@ -711,6 +721,22 @@ typedef struct _cef_browser_settings_t {
   /// supported with Chrome style.
   ///
   cef_state_t chrome_zoom_bubble;
+
+#if CEF_API_ADDED(CEF_EXPERIMENTAL)
+  ///
+  /// Controls whether CDP accessibility tree serialization collapses off-screen
+  /// nodes. When enabled, off-screen landmarks and headings are serialized as
+  /// summaries (role + name only) and other off-screen nodes are pruned.
+  /// This reduces snapshot size for AI agents using Playwright ariaSnapshot().
+  /// WARNING: This collapses the CDP accessibility tree and disables CDP
+  /// dynamic tree updates (nodesUpdated events). The DevTools Accessibility
+  /// panel will show an incomplete tree. Platform screen readers (NVDA, JAWS,
+  /// VoiceOver) are unaffected — they use a separate code path.
+  /// Can also be configured at runtime using
+  /// CefBrowserHost::SetAxViewportCollapse.
+  ///
+  cef_state_t ax_viewport_collapse;
+#endif
 } cef_browser_settings_t;
 
 ///
@@ -3848,6 +3874,10 @@ typedef enum {
   CEF_PERMISSION_TYPE_FILE_SYSTEM_ACCESS = 1 << 24,
 #if CEF_API_ADDED(13600)
   CEF_PERMISSION_TYPE_LOCAL_NETWORK_ACCESS = 1 << 25,
+#endif
+#if CEF_API_ADDED(14500)
+  CEF_PERMISSION_TYPE_LOCAL_NETWORK = 1 << 26,
+  CEF_PERMISSION_TYPE_LOOPBACK_NETWORK = 1 << 27,
 #endif
 } cef_permission_request_types_t;
 

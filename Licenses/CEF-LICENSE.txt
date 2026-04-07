@@ -1,4 +1,5 @@
-// Copyright (c) 2012 Google Inc. All rights reserved.
+// Copyright (c) 2008-2020 Marshall A. Greenblatt. Portions Copyright (c)
+// 2006-2009 Google Inc. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -26,28 +27,3 @@
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-// Do not include this header file directly. Use base/memory/scoped_policy.h
-// instead.
-
-#ifndef CEF_INCLUDE_BASE_INTERNAL_CEF_SCOPED_POLICY_H_
-#define CEF_INCLUDE_BASE_INTERNAL_CEF_SCOPED_POLICY_H_
-
-namespace base {
-namespace scoped_policy {
-
-// Defines the ownership policy for a scoped object.
-enum OwnershipPolicy {
-  // The scoped object takes ownership of an object by taking over an existing
-  // ownership claim.
-  ASSUME,
-
-  // The scoped object will retain the object and any initial ownership is
-  // not changed.
-  RETAIN
-};
-
-}  // namespace scoped_policy
-}  // namespace base
-
-#endif  // CEF_INCLUDE_BASE_INTERNAL_CEF_SCOPED_POLICY_H_

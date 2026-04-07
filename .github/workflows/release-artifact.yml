@@ -38,7 +38,11 @@ jobs:
           name: ChromiumEmbeddedFramework-xcframework
           path: |
             Dist/ChromiumEmbeddedFramework.xcframework.zip
+            Dist/Chromium-CREDITS.html
             Config/cef-artifact-release.json
+            THIRD_PARTY_NOTICES.md
+            Licenses/CEF-LICENSE.txt
+            Licenses/CEF-README.txt
 
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
@@ -49,4 +53,8 @@ jobs:
           prerelease: false
           files: |
             Dist/ChromiumEmbeddedFramework.xcframework.zip
+            Dist/Chromium-CREDITS.html
             Config/cef-artifact-release.json
+            THIRD_PARTY_NOTICES.md
+            Licenses/CEF-LICENSE.txt
+            Licenses/CEF-README.txt

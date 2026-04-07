@@ -33,7 +33,7 @@
 // by hand. See the translator.README.txt file in the tools directory for
 // more information.
 //
-// $hash=89503a6f1fbaaa8e8ad80df5b69e1d3bd54b7c25$
+// $hash=7eaff7067d4d35abfcd0a4368aa020ee8fa537a0$
 //
 
 #ifndef CEF_INCLUDE_CAPI_VIEWS_CEF_DISPLAY_CAPI_H_
@@ -59,8 +59,7 @@ extern "C" {
 /// otherwise indicated.
 ///
 /// For details on coordinate systems and usage see
-/// https://bitbucket.org/chromiumembedded/cef/wiki/GeneralUsage#markdown-
-/// header-coordinate-systems
+/// https://chromiumembedded.github.io/cef/general_usage#coordinate-systems
 ///
 /// NOTE: This struct is allocated DLL-side.
 ///

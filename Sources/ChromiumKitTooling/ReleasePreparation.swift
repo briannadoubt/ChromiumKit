@@ -22,6 +22,7 @@ public enum ReleasePreparation {
     public static func prepareRelease(
         packageRootURL: URL,
         artifactsDirectoryName: String = "Artifacts",
+        version: String? = nil,
         releaseURL: String? = nil
     ) throws -> ReleasePreparationResult {
         let artifactsDirectoryURL = packageRootURL.appendingPathComponent(artifactsDirectoryName, isDirectory: true)
@@ -70,6 +71,11 @@ public enum ReleasePreparation {
 
         let checksum = checksumResult.standardOutput.trimmingCharacters(in: .whitespacesAndNewlines)
         var metadata = try loadMetadata(from: metadataURL)
+        if let version, !version.isEmpty {
+            metadata.version = version
+        } else if let releaseURL, let derivedVersion = versionFromReleaseURL(releaseURL) {
+            metadata.version = derivedVersion
+        }
         if let releaseURL, !releaseURL.isEmpty {
             metadata.url = releaseURL
         }
@@ -87,5 +93,18 @@ public enum ReleasePreparation {
     private static func loadMetadata(from url: URL) throws -> ReleaseArtifactMetadata {
         let data = try Data(contentsOf: url)
         return try JSONDecoder().decode(ReleaseArtifactMetadata.self, from: data)
+    }
+
+    private static func versionFromReleaseURL(_ releaseURL: String) -> String? {
+        let pattern = #"https://github\.com/[^/]+/[^/]+/releases/download/cef-(.+)/ChromiumEmbeddedFramework\.xcframework\.zip"#
+        guard
+            let regex = try? NSRegularExpression(pattern: pattern),
+            let match = regex.firstMatch(in: releaseURL, range: NSRange(releaseURL.startIndex..., in: releaseURL)),
+            let range = Range(match.range(at: 1), in: releaseURL)
+        else {
+            return nil
+        }
+
+        return String(releaseURL[range]).replacingOccurrences(of: "%2B", with: "+")
     }
 }

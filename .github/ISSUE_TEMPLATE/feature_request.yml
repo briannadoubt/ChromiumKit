@@ -1,0 +1,41 @@
+name: Feature request
+description: Suggest an improvement to ChromiumKit
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: What is hard or missing today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What would you like ChromiumKit to do?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Workarounds, other APIs, or related packages you looked at
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - WebView / WebPage API
+        - SwiftUI ergonomics
+        - JavaScript / messaging
+        - Navigation / permissions
+        - Downloads / popups / DevTools
+        - Host integration / packaging
+        - Diagnostics / tooling
+        - Documentation / examples
+        - Other
+    validations:
+      required: true

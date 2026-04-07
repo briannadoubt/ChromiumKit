@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security policy
+    url: https://github.com/briannadoubt/ChromiumKit/security/policy
+    about: Please use the security policy and private reporting path for vulnerabilities.

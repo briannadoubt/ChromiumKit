@@ -1,0 +1,70 @@
+name: Bug report
+description: Report a reproducible ChromiumKit bug
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a bug report.
+
+        Please do not report security issues here. Use the guidance in `SECURITY.md` instead.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction
+      description: Steps, sample code, or a small project that reproduces the problem
+      placeholder: |
+        1. Create a WebPage with ...
+        2. Build the host app ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: input
+    id: chromiumkit-version
+    attributes:
+      label: ChromiumKit version
+      description: Tag, commit SHA, or package revision
+    validations:
+      required: true
+  - type: input
+    id: cef-version
+    attributes:
+      label: Pinned CEF version
+      description: The version from scripts/cef_version.sh or release metadata
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: macOS version, Xcode version, and target architecture
+      placeholder: macOS 26.0, Xcode 26.4, arm64
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - SwiftUI API
+        - Bridge/runtime
+        - Host integration
+        - Packaging/signing
+        - CLI/plugin
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Paste relevant logs, diagnostics, or screenshots
+      render: shell

@@ -1,0 +1,42 @@
+name: CodeQL
+
+on:
+  push:
+    branches:
+      - main
+      - "codex/**"
+  pull_request:
+  schedule:
+    - cron: "41 17 * * 1"
+
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
+jobs:
+  analyze:
+    runs-on: macos-26
+
+    steps:
+      - name: Check out sources
+        uses: actions/checkout@v6
+
+      - name: Install CI dependencies
+        run: ./scripts/install_ci_dependencies.sh
+
+      - name: Prepare local CEF artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: ./scripts/prepare_local_cef_artifact.sh
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: swift,c-cpp
+
+      - name: Build package
+        run: swift build
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v4
