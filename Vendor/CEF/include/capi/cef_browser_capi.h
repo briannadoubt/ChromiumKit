@@ -33,7 +33,7 @@
 // by hand. See the translator.README.txt file in the tools directory for
 // more information.
 //
-// $hash=df3fd61eba6b943d05c19efe2fa91c0fcf3ecd8c$
+// $hash=a935a1fa527e1f635bf33c83c38c82689b13069a$
 //
 
 #ifndef CEF_INCLUDE_CAPI_CEF_BROWSER_CAPI_H_
@@ -1060,7 +1060,7 @@ typedef struct _cef_browser_host_t {
   /// be applied asynchronously on the UI thread. WARNING: This collapses the
   /// CDP accessibility tree and disables CDP dynamic tree updates (nodesUpdated
   /// events). The DevTools Accessibility panel will show an incomplete tree.
-  /// Platform screen readers (NVDA, JAWS, VoiceOver) are unaffected — they use
+  /// Platform screen readers (NVDA, JAWS, VoiceOver) are unaffected - they use
   /// a separate code path.
   ///
   void(CEF_CALLBACK* set_ax_viewport_collapse)(struct _cef_browser_host_t* self,

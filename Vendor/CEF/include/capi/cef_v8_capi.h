@@ -33,7 +33,7 @@
 // by hand. See the translator.README.txt file in the tools directory for
 // more information.
 //
-// $hash=7148d4a766496e25ea470b43e70566e202feea90$
+// $hash=dc2df3036811a967197cfdae3b67270980420f1b$
 //
 
 #ifndef CEF_INCLUDE_CAPI_CEF_V8_CAPI_H_
@@ -934,7 +934,7 @@ CEF_EXPORT cef_v8_value_t* cef_v8_value_create_array_buffer_with_copy(
 ///
 /// Create a new cef_v8_value_t object of type ArrayBuffer from a backing store
 /// previously created with cef_v8_backing_store_t::cef_translator_test_scoped_l
-/// ibrary_child_child_create(). This is a zero-copy operation — the ArrayBuffer
+/// ibrary_child_child_create(). This is a zero-copy operation - the ArrayBuffer
 /// uses the memory already allocated by the backing store. The backing store is
 /// consumed and becomes invalid after this call. This function should only be
 /// called from within the scope of a cef_render_process_handler_t,
