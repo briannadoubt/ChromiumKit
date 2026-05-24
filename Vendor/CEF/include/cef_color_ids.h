@@ -956,6 +956,7 @@
   E_CPONLY(CEF_ColorGlicInactiveTabUnderlineGradient1) \
   E_CPONLY(CEF_ColorGlicInactiveTabUnderlineGradient2) \
   E_CPONLY(CEF_ColorGlicInactiveTabUnderlineGradient3) \
+  E_CPONLY(CEF_ColorGlicSelectionOverlayToast) \
   /* Hover Button colors */ \
   E_CPONLY(CEF_ColorHoverButtonBackgroundHovered) \
   /* Lens overlay colors. */ \
@@ -1019,6 +1020,7 @@
   E_CPONLY(CEF_ColorNewTabPageThreadsRailIconButton) \
   E_CPONLY(CEF_ColorNewTabPageChipBackground) \
   E_CPONLY(CEF_ColorNewTabPageChipForeground) \
+  E_CPONLY(CEF_ColorNewTabPageComposeboxSubmitButtonBackground) \
   E_CPONLY(CEF_ColorComposeboxBackground) \
   E_CPONLY(CEF_ColorComposeboxFileChipSpinner) \
   E_CPONLY(CEF_ColorComposeboxFont) \
@@ -1175,6 +1177,7 @@
   E_CPONLY(CEF_ColorOmniboxKeywordSeparator) \
   E_CPONLY(CEF_ColorOmniboxResultsBackground) \
   E_CPONLY(CEF_ColorOmniboxResultsBackgroundHovered) \
+  E_CPONLY(CEF_ColorOmniboxResultsBackgroundHoverOverlay) \
   E_CPONLY(CEF_ColorOmniboxResultsBackgroundSelected) \
   E_CPONLY(CEF_ColorOmniboxResultsBackgroundIph) \
   E_CPONLY(CEF_ColorOmniboxResultsButtonBorder) \
@@ -1472,6 +1475,13 @@
   E_CPONLY(CEF_ColorReadAnythingAudioControlsIconHighContrast) \
   E_CPONLY(CEF_ColorReadAnythingAudioControlsIconLowContrastLight) \
   E_CPONLY(CEF_ColorReadAnythingAudioControlsIconLowContrastDark) \
+  E_CPONLY(CEF_ColorReadAnythingFullPageScrollbarBlue) \
+  E_CPONLY(CEF_ColorReadAnythingFullPageScrollbarDark) \
+  E_CPONLY(CEF_ColorReadAnythingFullPageScrollbarLight) \
+  E_CPONLY(CEF_ColorReadAnythingFullPageScrollbarYellow) \
+  E_CPONLY(CEF_ColorReadAnythingFullPageScrollbarHighContrast) \
+  E_CPONLY(CEF_ColorReadAnythingFullPageScrollbarLowContrastLight) \
+  E_CPONLY(CEF_ColorReadAnythingFullPageScrollbarLowContrastDark) \
   /* Realbox colors. */ \
   E_CPONLY(CEF_ColorSearchboxAnswerIconBackground) \
   E_CPONLY(CEF_ColorSearchboxAnswerIconForeground) \
@@ -1626,6 +1636,7 @@
   E_CPONLY(CEF_ColorHoverCardTabAlertAudioPlayingIcon) \
   /* Tab colors. */ \
   E_CPONLY(CEF_ColorTabBackgroundActiveFrameActive) \
+  E_CPONLY(CEF_ColorDetachedTabBackgroundActiveFrameActive) \
   E_CPONLY(CEF_ColorTabBackgroundActiveFrameInactive) \
   E_CPONLY(CEF_ColorTabBackgroundInactiveFrameActive) \
   E_CPONLY(CEF_ColorTabBackgroundInactiveFrameInactive) \
@@ -1837,6 +1848,8 @@
     E_CPONLY(CEF_ColorBorealisSplashScreenForeground) \
     /* Caption colors. */ \
     E_CPONLY(CEF_ColorCaptionForeground) \
+    E_CPONLY(CEF_ColorVerticalTabsCaptionButtonForegroundActive) \
+    E_CPONLY(CEF_ColorVerticalTabsCaptionButtonForegroundInactive) \
     /* Sharesheet colors. */ \
     E_CPONLY(CEF_ColorSharesheetTargetButtonIconShadow)
 #elif defined(OS_WIN)
