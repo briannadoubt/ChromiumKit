@@ -1,15 +1,15 @@
 Chromium Embedded Framework (CEF) Minimal Binary Distribution for MacOS
 -------------------------------------------------------------------------------
 
-Date:             June 02, 2026
+Date:             July 09, 2026
 
-CEF Version:      148.0.10+g7ee53f5+chromium-148.0.7778.218
+CEF Version:      150.0.10+g8042e43+chromium-150.0.7871.101
 CEF URL:          https://github.com/chromiumembedded/cef.git
-                  @7ee53f518427a047f3c385446e3f92797e6b8cae
+                  @8042e43d20cca43f182c3fc72e762b000f6ee22f
 
-Chromium Version: 148.0.7778.218
+Chromium Version: 150.0.7871.101
 Chromium URL:     https://chromium.googlesource.com/chromium/src.git
-                  @e1d853ded38ac7d1c5a4c83f3e30dfbf76b10c34
+                  @51b83660c3609f271ccbbd65785bf7e50a21312d
 
 This distribution contains the minimal components necessary to build and
 distribute an application using CEF on the MacOS platform. Please see
