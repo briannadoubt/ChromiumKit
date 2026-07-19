@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=a3a8a80e5390daeecfaa7d73371f3800abd2709f$
+// $hash=88e653d24c965ad163c3057605a3c5c11ad2950f$
 //
 
 #ifndef CEF_LIBCEF_DLL_CTOCPP_TEST_TEST_SERVER_CONNECTION_CTOCPP_H_
@@ -45,6 +45,12 @@ class CefTestServerConnectionCToCpp
                         const void* data,
                         size_t data_size,
                         const HeaderMap& extra_headers) override;
+#if CEF_API_ADDED(CEF_EXPERIMENTAL)
+  void SendHttpResponseWithRawHeaders(const void* header_data,
+                                      size_t header_data_size,
+                                      const void* response_data,
+                                      size_t response_data_size) override;
+#endif
 };
 
 constexpr auto CefTestServerConnectionCToCpp_Wrap =
