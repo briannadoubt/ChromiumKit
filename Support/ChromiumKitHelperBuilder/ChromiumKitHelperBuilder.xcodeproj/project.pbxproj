@@ -1489,8 +1489,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				29134974734F03A70230F771 /* CEFHelperSupport */,
 				01BDB9A3116F54EF76CABAA0 /* ChromiumKitHelper */,
+				29134974734F03A70230F771 /* CEFHelperSupport */,
 			);
 		};
 /* End PBXProject section */
