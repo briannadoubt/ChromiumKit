@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=8c43983e82c6326c8578ca33dd6efd667bf49064$
+// $hash=f41a465aa8416092a92168cbba9441b0aee7e08f$
 //
 
 #include "libcef_dll/ctocpp/test/test_server_connection_ctocpp.h"
@@ -130,6 +130,36 @@ void CefTestServerConnectionCToCpp::SendHttpResponse(
     cef_string_multimap_free(extra_headersMultimap);
   }
 }
+
+#if CEF_API_ADDED(15100)
+NO_SANITIZE("cfi-icall")
+void CefTestServerConnectionCToCpp::SendHttpResponseWithRawHeaders(
+    const void* header_data,
+    size_t header_data_size,
+    const void* response_data,
+    size_t response_data_size) {
+  shutdown_checker::AssertNotShutdown();
+
+  auto* _struct = GetStruct();
+  if (!_struct->send_http_response_with_raw_headers) {
+    return;
+  }
+
+  // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
+
+  // Verify param: header_data; type: simple_byaddr
+  DCHECK(header_data);
+  if (!header_data) {
+    return;
+  }
+  // Unverified params: response_data
+
+  // Execute
+  _struct->send_http_response_with_raw_headers(_struct, header_data,
+                                               header_data_size, response_data,
+                                               response_data_size);
+}
+#endif  // CEF_API_ADDED(15100)
 
 // CONSTRUCTOR - Do not edit by hand.
 
