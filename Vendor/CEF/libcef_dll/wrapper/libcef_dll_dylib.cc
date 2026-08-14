@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=66f12071a9d5ee28ca8de68cf3e13b26ce94c95d$
+// $hash=9b257d4600a3c2dfdc6cca2a9180ec7de4f78236$
 //
 
 
@@ -301,6 +301,7 @@ decltype(&cef_id_for_pack_resource_name) cef_id_for_pack_resource_name;
 decltype(&cef_id_for_pack_string_name) cef_id_for_pack_string_name;
 decltype(&cef_id_for_command_id_name) cef_id_for_command_id_name;
 decltype(&cef_version_info) cef_version_info;
+decltype(&cef_version_full) cef_version_full;
 decltype(&cef_version_info_all) cef_version_info_all;
 decltype(&cef_dump_without_crashing) cef_dump_without_crashing;
 decltype(&cef_dump_without_crashing_unthrottled) cef_dump_without_crashing_unthrottled;
@@ -586,6 +587,7 @@ INIT_ENTRY(cef_id_for_pack_resource_name);
 INIT_ENTRY(cef_id_for_pack_string_name);
 INIT_ENTRY(cef_id_for_command_id_name);
 INIT_ENTRY(cef_version_info);
+INIT_ENTRY(cef_version_full);
 INIT_ENTRY(cef_version_info_all);
 INIT_ENTRY(cef_dump_without_crashing);
 INIT_ENTRY(cef_dump_without_crashing_unthrottled);
@@ -1396,6 +1398,10 @@ NO_SANITIZE("cfi-icall") int cef_id_for_command_id_name(const char* name) {
 
 NO_SANITIZE("cfi-icall") int cef_version_info(int entry) {
   return g_libcef_pointers.cef_version_info(entry);
+}
+
+NO_SANITIZE("cfi-icall") const char* cef_version_full() {
+  return g_libcef_pointers.cef_version_full();
 }
 
 NO_SANITIZE("cfi-icall") void cef_version_info_all(cef_version_info_t* info) {
