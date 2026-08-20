@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=d11b600963fd72fd079de6cb9c97be6df8bc28e4$
+// $hash=0b11448ded8ad528235ddb6e24f48c9fa3a3e2c6$
 //
 
 #include "include/capi/cef_app_capi.h"
@@ -48,6 +48,7 @@
 #include "libcef_dll/cpptoc/task_cpptoc.h"
 #include "libcef_dll/cpptoc/v8_handler_cpptoc.h"
 #include "libcef_dll/ctocpp/binary_value_ctocpp.h"
+#include "libcef_dll/ctocpp/browser_ctocpp.h"
 #include "libcef_dll/ctocpp/command_line_ctocpp.h"
 #include "libcef_dll/ctocpp/frame_ctocpp.h"
 #include "libcef_dll/ctocpp/value_ctocpp.h"
@@ -887,4 +888,51 @@ NO_SANITIZE("cfi-icall") CEF_GLOBAL bool CefIsFeatureEnabledForTests(const CefSt
   // Return type: bool
   return _retval?true:false;
 }
+
+#if CEF_API_ADDED(CEF_EXPERIMENTAL)
+NO_SANITIZE("cfi-icall") CEF_GLOBAL int CefGetChromeBrowserOwnedWidgetCountForTests(CefRefPtr<CefBrowser> browser) {
+  // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
+
+  // Verify param: browser; type: refptr_same
+  DCHECK(browser.get());
+  if (!browser.get()) {
+    return 0;
+  }
+
+  // Execute
+  int _retval = cef_get_chrome_browser_owned_widget_count_for_tests(
+      CefBrowserCToCpp_Unwrap(browser));
+
+  // Return type: simple
+  return _retval;
+}
+#endif  // CEF_API_ADDED(CEF_EXPERIMENTAL)
+
+#if CEF_API_ADDED(CEF_EXPERIMENTAL)
+NO_SANITIZE("cfi-icall") CEF_GLOBAL void CefClearChromeBrowserPasswordDismissalStatsForTests(CefRefPtr<CefBrowser> browser, const CefString& origin, CefRefPtr<CefCompletionCallback> callback) {
+  // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
+
+  // Verify param: browser; type: refptr_same
+  DCHECK(browser.get());
+  if (!browser.get()) {
+    return;
+  }
+  // Verify param: origin; type: string_byref_const
+  DCHECK(!origin.empty());
+  if (origin.empty()) {
+    return;
+  }
+  // Verify param: callback; type: refptr_diff
+  DCHECK(callback.get());
+  if (!callback.get()) {
+    return;
+  }
+
+  // Execute
+  cef_clear_chrome_browser_password_dismissal_stats_for_tests(
+      CefBrowserCToCpp_Unwrap(browser),
+      origin.GetStruct(),
+      CefCompletionCallbackCppToC_Wrap(callback));
+}
+#endif  // CEF_API_ADDED(CEF_EXPERIMENTAL)
 
