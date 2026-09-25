@@ -697,14 +697,6 @@
   E_CPONLY(CEF_ColorAshSystemUIMenuItemBackgroundSelected) \
   E_CPONLY(CEF_ColorAshSystemUIMenuSeparator) \
   \
-  /* TODO(b/291622042): Delete these colors when Jelly is launched */ \
-  E_CPONLY(CEF_ColorHighlightBorderBorder1) \
-  E_CPONLY(CEF_ColorHighlightBorderBorder2) \
-  E_CPONLY(CEF_ColorHighlightBorderBorder3) \
-  E_CPONLY(CEF_ColorHighlightBorderHighlight1) \
-  E_CPONLY(CEF_ColorHighlightBorderHighlight2) \
-  E_CPONLY(CEF_ColorHighlightBorderHighlight3) \
-  \
   E_CPONLY(CEF_ColorCrosSystemHighlight) \
   E_CPONLY(CEF_ColorCrosSystemHighlightBorder) \
   E_CPONLY(CEF_ColorCrosSystemHighlightBorder1) \
@@ -784,8 +776,19 @@
   E_CPONLY(CEF_ColorAppMenuExpandedForegroundPrimary) \
   E_CPONLY(CEF_ColorAppMenuChipInkDropHover) \
   E_CPONLY(CEF_ColorAppMenuChipInkDropRipple) \
+  E_CPONLY(CEF_ColorAppMenuYourChromeBackground) \
+  E_CPONLY(CEF_ColorAppMenuToolsAndActionsBackground) \
+  E_CPONLY(CEF_ColorAppMenuBlockButtonBackground) \
+  E_CPONLY(CEF_ColorAppMenuBlockButtonBackgroundHovered) \
+  E_CPONLY(CEF_ColorAppMenuBlockButtonBorder) \
+  E_CPONLY(CEF_ColorAppMenuBlockButtonForeground) \
+  E_CPONLY(CEF_ColorAppMenuFooterButtonForeground) \
+  E_CPONLY(CEF_ColorAppMenuFooterButtonForegroundHovered) \
+  E_CPONLY(CEF_ColorAppMenuFooterButtonBackgroundHovered) \
   /* Actor UI colors.*/ \
+  E_CPONLY(CEF_ColorActorUiHandoffButtonBackground) \
   E_CPONLY(CEF_ColorActorUiHandoffButtonBorder) \
+  E_CPONLY(CEF_ColorActorUiHandoffButtonForeground) \
   E_CPONLY(CEF_ColorActorUiOverlayBorder) \
   E_CPONLY(CEF_ColorActorUiOverlayBorderGlow) \
   E_CPONLY(CEF_ColorActorUiScrimStart) \
@@ -816,8 +819,18 @@
   E_CPONLY(CEF_ColorAvatarButtonNormalRipple) \
   E_CPONLY(CEF_ColorAvatarStroke) \
   E_CPONLY(CEF_ColorAvatarFillForContrast) \
-  E_CPONLY(CEF_ColorAiSubscriptionRingGradientStart) \
-  E_CPONLY(CEF_ColorAiSubscriptionRingGradientEnd) \
+  E_CPONLY(CEF_ColorAvatarRingGradientStart) \
+  E_CPONLY(CEF_ColorAvatarRingGradientEnd) \
+  E_CPONLY(CEF_ColorAvatarBadgeWaveBase0) \
+  E_CPONLY(CEF_ColorAvatarBadgeWaveBase1) \
+  E_CPONLY(CEF_ColorAvatarBadgeWaveBase2) \
+  E_CPONLY(CEF_ColorAvatarBadgeWaveBase3) \
+  E_CPONLY(CEF_ColorAvatarBadgeWaveOverlay0) \
+  E_CPONLY(CEF_ColorAvatarBadgeWaveOverlay1) \
+  E_CPONLY(CEF_ColorAvatarBadgeWaveOverlay2) \
+  E_CPONLY(CEF_ColorAvatarBadgeWaveOverlay3) \
+  E_CPONLY(CEF_ColorAvatarBadgeShadow) \
+  E_CPONLY(CEF_ColorAvatarBadgeBackground) \
   /* Bookmark Manager page colors. */ \
   E_CPONLY(CEF_ColorBookmarkManagerItemBackgroundSelected) \
   E_CPONLY(CEF_ColorBookmarkManagerItemOutline) \
@@ -982,6 +995,12 @@
   /* Intent Picker colors. */ \
   E_CPONLY(CEF_ColorIntentPickerItemBackgroundHovered) \
   E_CPONLY(CEF_ColorIntentPickerItemBackgroundSelected) \
+  /* Isolated Tab Page colors. */ \
+  E_CPONLY(CEF_ColorIsolatedTabPageBackground) \
+  E_CPONLY(CEF_ColorIsolatedTabPageCardBackground) \
+  E_CPONLY(CEF_ColorIsolatedTabPageLink) \
+  E_CPONLY(CEF_ColorIsolatedTabPageNoticeBorder) \
+  E_CPONLY(CEF_ColorIsolatedTabPageNoticeIcon) \
   /* Glic colors */ \
   E_CPONLY(CEF_ColorGlicBackground) \
   E_CPONLY(CEF_ColorGlicModalBackground) \
@@ -1046,6 +1065,7 @@
   E_CPONLY(CEF_ColorNewTabPageActiveBackground) \
   E_CPONLY(CEF_ColorNewTabPageAddShortcutBackground) \
   E_CPONLY(CEF_ColorNewTabPageAddShortcutForeground) \
+  E_CPONLY(CEF_ColorNewTabPageAddShortcutBackgroundHovered) \
   E_CPONLY(CEF_ColorNewTabPageAttributionForeground) \
   E_CPONLY(CEF_ColorNewTabPageBackground) \
   E_CPONLY(CEF_ColorNewTabPageBackgroundOverride) \
@@ -1341,15 +1361,6 @@
   E_CPONLY(CEF_ColorProfileMenuPromoButtonsBackground) \
   /* Profiles colors. */ \
   E_CPONLY(CEF_ColorProfilesReauthDialogBorder) \
-  /* Projects Panel colors. */ \
-  E_CPONLY(CEF_ColorProjectsPanelBackground) \
-  E_CPONLY(CEF_ColorProjectsPanelButtonDisabledIcon) \
-  E_CPONLY(CEF_ColorProjectsPanelButtonHoverBackground) \
-  E_CPONLY(CEF_ColorProjectsPanelButtonIcon) \
-  E_CPONLY(CEF_ColorProjectsPanelListsSeparator) \
-  E_CPONLY(CEF_ColorProjectsPanelNoTabGroupsText) \
-  E_CPONLY(CEF_ColorProjectsPanelTabGroupsDragPlaceholder) \
-  E_CPONLY(CEF_ColorProjectsPanelTabGroupsDropIndicator) \
   /* PWA colors. */ \
   E_CPONLY(CEF_ColorPwaBackground) \
   E_CPONLY(CEF_ColorPwaMenuButtonIcon) \
@@ -1466,6 +1477,11 @@
   E_CPONLY(CEF_ColorReadAnythingPreviousReadAloudHighlightHighContrast) \
   E_CPONLY(CEF_ColorReadAnythingPreviousReadAloudHighlightLowContrastLight) \
   E_CPONLY(CEF_ColorReadAnythingPreviousReadAloudHighlightLowContrastDark) \
+  E_CPONLY(CEF_ColorReadAnythingAiPlaybackBackground) \
+  E_CPONLY(CEF_ColorReadAnythingAiPlaybackHoverBackground) \
+  E_CPONLY(CEF_ColorReadAnythingAiPlaybackIcon) \
+  E_CPONLY(CEF_ColorReadAnythingAiPlaybackActiveBackground) \
+  E_CPONLY(CEF_ColorReadAnythingAiPlaybackActiveIcon) \
   E_CPONLY(CEF_ColorReadAnythingAudioPlayerBackground) \
   E_CPONLY(CEF_ColorReadAnythingAudioPlayerBackgroundBlue) \
   E_CPONLY(CEF_ColorReadAnythingAudioPlayerBackgroundDark) \
@@ -1587,6 +1603,8 @@
   E_CPONLY(CEF_ColorSettingsColumnedSectionDescriptionHeader) \
   /* Settings info card colors. */ \
   E_CPONLY(CEF_ColorSettingsInfoCardBackground) \
+  /* Settings page colors. */ \
+  E_CPONLY(CEF_ColorSettingsWebuiPageBackground) \
   /* Share-this-tab dialog colors. */ \
   E_CPONLY(CEF_ColorShareThisTabAudioToggleBackground) \
   E_CPONLY(CEF_ColorShareThisTabSourceViewBorder) \
