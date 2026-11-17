@@ -1,15 +1,15 @@
 Chromium Embedded Framework (CEF) Minimal Binary Distribution for MacOS
 -------------------------------------------------------------------------------
 
-Date:             August 20, 2026
+Date:             November 13, 2026
 
-CEF Version:      151.3.23+gd211df0+chromium-151.0.7922.170
+CEF Version:      156.0.30+g6028375+chromium-156.0.8078.96
 CEF URL:          https://github.com/chromiumembedded/cef.git
-                  @d211df08c47ea7284a58f0106ca7a80e716f758c
+                  @6028375a4532fb89d23b58635f5c0d3a82c93959
 
-Chromium Version: 151.0.7922.170
+Chromium Version: 156.0.8078.96
 Chromium URL:     https://chromium.googlesource.com/chromium/src.git
-                  @fa19f0c9d2e340c1c5429d5fff181b6c2d51bbae
+                  @2ad9b7f5a86846e0b264090723a6a78964bb84c4
 
 This distribution contains the minimal components necessary to build and
 distribute an application using CEF on the MacOS platform. Please see
@@ -67,8 +67,6 @@ cefclient.app
     │   ├── Chromium Embedded Framework.framework
     │   │   ├── Chromium Embedded Framework <= main application library
     │   │   ├── Libraries
-    │   │   │   ├── libEGL.dylib <= ANGLE support libraries
-    │   │   │   ├── libGLESv2.dylib <=^
     │   │   │   ├── libvk_swiftshader.dylib <= SwANGLE support libraries
     │   │   │   └── vk_swiftshader_icd.json <=^
     │   │   └── Resources
@@ -160,12 +158,9 @@ run but any related functionality may become broken or disabled.
     These files contain non-localized resources used by CEF, Chromium and Blink.
     Without these files arbitrary Web components may display incorrectly.
 
-* ANGLE support.
-  * Chromium Embedded Framework.framework/Libraries/libEGL.dylib
-  * Chromium Embedded Framework.framework/Libraries/libGLESv2.dylib
+* ANGLE Metal shader cache.
   * Chromium Embedded Framework.framework/Resources/gpu_shader_cache.bin
-  Support for rendering of HTML5 content like 2D canvas, 3D CSS and WebGL.
-  Without these files the aforementioned capabilities may fail.
+  Precompiled shaders used by ANGLE's Metal backend.
 
 * SwANGLE support.
   * Chromium Embedded Framework.framework/Libraries/libvk_swiftshader.dylib
