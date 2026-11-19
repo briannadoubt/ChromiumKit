@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=5dc73e7636e0ba309521a621f71a548efd6baf7f$
+// $hash=43c062425b76494a5afbb38948b5a7705ba14382$
 //
 
 #ifndef CEF_LIBCEF_DLL_CTOCPP_PREFERENCE_REGISTRAR_CTOCPP_H_
@@ -37,6 +37,14 @@ class CefPreferenceRegistrarCToCpp
   // CefPreferenceRegistrar methods.
   bool AddPreference(const CefString& name,
                      CefRefPtr<CefValue> default_value) override;
+#if CEF_API_ADDED(15600)
+  bool SetDefaultPreference(const CefString& name,
+                            CefRefPtr<CefValue> value,
+                            CefString& error) override;
+#endif
+#if CEF_API_ADDED(15600)
+  CefRefPtr<CefValue> GetDefaultPreference(const CefString& name) override;
+#endif
 };
 
 constexpr auto CefPreferenceRegistrarCToCpp_Wrap =
