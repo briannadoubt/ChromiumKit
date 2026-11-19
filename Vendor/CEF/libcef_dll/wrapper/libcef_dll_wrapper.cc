@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=0b11448ded8ad528235ddb6e24f48c9fa3a3e2c6$
+// $hash=a55e760b5a7b2fe6ce030d87bfe6a3fcceac2620$
 //
 
 #include "include/capi/cef_app_capi.h"
@@ -817,6 +817,7 @@ NO_SANITIZE("cfi-icall") CEF_GLOBAL int64_t CefNowFromSystemTraceTime() {
   return _retval;
 }
 
+#if CEF_API_REMOVED(15400)
 NO_SANITIZE("cfi-icall") CEF_GLOBAL bool CefRegisterExtension(const CefString& extension_name, const CefString& javascript_code, CefRefPtr<CefV8Handler> handler) {
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -841,6 +842,7 @@ NO_SANITIZE("cfi-icall") CEF_GLOBAL bool CefRegisterExtension(const CefString& e
   // Return type: bool
   return _retval?true:false;
 }
+#endif  // CEF_API_REMOVED(15400)
 
 NO_SANITIZE("cfi-icall") CEF_GLOBAL void CefExecuteJavaScriptWithUserGestureForTests(CefRefPtr<CefFrame> frame, const CefString& javascript) {
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
